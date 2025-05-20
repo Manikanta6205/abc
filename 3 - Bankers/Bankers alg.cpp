@@ -19,9 +19,7 @@ void pv(const vector<int>& v, const string& n) {
     cout << "]" << endl;
 }
 
-bool safe(const vector<vector<int>>& mx, const vector<vector<int>>& al, const vector<int>& av, int p, int r) {
-    vector<int> nd(r);
-    for (int i = 0; i < r; i++) nd[i] = mx[p][i] - al[p][i];
+bool safe(const vector<int>& nd, const vector<int>& av, int r) {
     for (int i = 0; i < r; i++) if (nd[i] > av[i]) return false;
     return true;
 }
@@ -44,7 +42,7 @@ bool ba(vector<vector<int>>& mx, vector<vector<int>>& al, vector<int>& av, int n
     while (done < n) {
         bool found = false;
         for (int i = 0; i < n; i++) {
-            if (!f[i] && safe(mx, al, av, i, r)) {
+            if (!f[i] && safe(nd[i], av, r)) {
                 for (int j = 0; j < r; j++) av[j] += al[i][j];
                 seq.push_back(i);
                 f[i] = true;
